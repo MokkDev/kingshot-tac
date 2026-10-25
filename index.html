@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Interactive step-by-step guide for the Kingshot Tri-Alliance Clash event.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🔱%3C/text%3E%3C/svg%3E">
+<title>Tri-Alliance Clash: Member Guide</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#e8eef0;--card:#fbfdfd;--text:#16222a;--muted:#55656e;--line:#9db0b8;--atk:#0b7a6a;--def:#c8332b;--mv:#1f5fd6;--hl:#f5b400;--ra:#c2410c;--rd:#1d4ed8;--rf:#7e22ce;--btn:#16222a;--btnt:#fbfdfd}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10181c;--card:#18242a;--text:#e6eef1;--muted:#93a6af;--line:#46606b;--atk:#2fe0c4;--def:#ff6b60;--mv:#7aa6ff;--ra:#fb923c;--rd:#60a5fa;--rf:#c084fc;--btn:#e6eef1;--btnt:#10181c}}
+:root[data-theme="dark"]{--bg:#10181c;--card:#18242a;--text:#e6eef1;--muted:#93a6af;--line:#46606b;--atk:#2fe0c4;--def:#ff6b60;--mv:#7aa6ff;--ra:#fb923c;--rd:#60a5fa;--rf:#c084fc;--btn:#e6eef1;--btnt:#10181c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1{font:600 15px/1.3 system-ui,sans-serif;color:var(--muted);margin:4px 0 10px}
+.side{display:flex;gap:8px;align-items:center;margin:0 0 10px;font-size:14px;color:var(--muted)}
+.side button{min-height:36px;padding:4px 14px;font-size:14px;background:transparent;color:var(--text)}
+.side button[aria-pressed=true]{background:var(--btn);color:var(--btnt)}
+.map{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+svg{display:block;width:100%;height:auto}
+.ring{fill:none;stroke:var(--hl);animation:p 1.4s ease-in-out infinite}
+@keyframes p{50%{opacity:.4}}
+@media (prefers-reduced-motion:reduce){.ring{animation:none}}
+.reg{fill:var(--hl);fill-opacity:.2;stroke:var(--hl);stroke-dasharray:10 6}
+.ar{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.a-atk{stroke:#c2410c}.a-def{stroke:#1d4ed8}.a-flo{stroke:#7e22ce}.a-foe{stroke:#b91c1c}.a-mv,.a-bi{stroke:#334155}
+.mk{fill:var(--card);stroke:var(--hl)}
+.mt{fill:var(--text);font-family:system-ui,sans-serif;font-weight:600;text-anchor:middle;dominant-baseline:central}
+.leg{font-size:12px;color:var(--muted);margin:6px 2px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:12px}
+.t{font-size:12px;color:var(--muted);margin:0}
+h2{font:700 22px/1.25 Georgia,"Times New Roman",serif;margin:2px 0 8px}
+.card p{margin:0 0 8px}.card ul{margin:0;padding-left:20px}.card li{margin:3px 0}
+.nav{display:flex;gap:10px;align-items:center;margin-top:12px}
+button{font:600 15px system-ui,sans-serif;border-radius:8px;border:1px solid var(--btn);padding:10px 16px;cursor:pointer;min-height:44px}
+#next{background:var(--btn);color:var(--btnt)}#prev{background:transparent;color:var(--text)}
+button:disabled{opacity:.35;cursor:default}
+button:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.dots{display:flex;gap:6px;margin-left:auto}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--line)}.dots i.on{background:var(--hl)}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.top b{font:700 18px Georgia,serif}.top span{font-size:13px;color:var(--muted)}.seg{display:flex;gap:4px;margin:8px 0 12px}.seg i{flex:1;height:6px;border-radius:3px;background:var(--line)}.seg i.on{background:var(--hl)}.tx{font-size:20px;line-height:1.4;margin:0;min-height:56px}.tx.job{border-left:4px solid var(--hl);padding-left:12px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.chips span{border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-weight:600;font-size:14px}.bar{margin:0 0 10px}.bar label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}select{width:100%;font:600 16px system-ui,sans-serif;color:var(--text);padding:12px 40px 12px 14px;border:1px solid var(--btn);border-radius:8px;appearance:none;-webkit-appearance:none;background-color:var(--card);background-image:linear-gradient(45deg,transparent 50%,var(--text) 50%),linear-gradient(135deg,var(--text) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat}select:focus-visible{outline:3px solid var(--hl);outline-offset:2px}.tx div{margin:3px 0}.role{--c:var(--ra);display:inline-flex;align-items:center;gap:6px;font:700 15px/1.3 system-ui,sans-serif;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);border:1.5px solid var(--c);border-radius:999px;padding:1px 9px 1px 8px;min-height:0;cursor:help;vertical-align:baseline}.role::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}.role::after{content:"i";font:700 10px/12px Georgia,serif;width:13px;height:13px;text-align:center;border:1.5px solid var(--c);border-radius:50%;opacity:.75}.role:hover{background:color-mix(in srgb,var(--c) 26%,transparent)}.role:focus-visible{outline:3px solid var(--hl);outline-offset:2px}.rA{--c:var(--ra)}.rD{--c:var(--rd)}.rF{--c:var(--rf)}.chips .role{font-size:14px}.chips span.n{border:0;padding:0}.tip{position:fixed;z-index:50;max-width:250px;background:var(--btn);color:var(--btnt);padding:9px 12px;border-radius:8px;font:500 14px/1.35 system-ui,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.28);pointer-events:none}.tip::after{content:"";position:absolute;left:var(--ax,50%);width:10px;height:10px;background:inherit;transform:translateX(-50%) rotate(45deg)}.tip.up::after{bottom:-5px}.tip.dn::after{top:-5px}.tip[hidden]{display:none}
+.note{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<h1>Tri-Alliance Clash: our tactic, step by step</h1>
+<div class="bar"><label for="jump">Jump to step</label><select id="jump"></select></div>
+<div class="side" role="group" aria-label="Our side">Our side:
+<button data-s="A" aria-pressed="true">A</button><button data-s="B" aria-pressed="false">B</button><button data-s="C" aria-pressed="false">C</button></div>
+<div class="map"><svg id="m" viewBox="0 0 1600 1168" role="img" aria-label="Map of the Tri-Alliance Clash battlefield with the current step highlighted">
+<image href="map.webp" x="0" y="0" width="1600" height="1168"/><g id="ov"></g></svg></div>
+<p class="leg">Map by Daryl, kingshotguides.com, edited so all three sides match (A22 and A23 shown as Clusters). Rings and arrows are our plan, placed by hand.</p>
+<section class="card" aria-live="polite"><div class="top"><b id="sn"></b><span id="sc"></span></div><div class="seg" id="seg"></div><div id="v"></div><div class="tx" id="tx"></div></section>
+<div class="nav"><button id="prev">Back</button><button id="next">Next</button></div>
+</main>
+<div class="tip" id="tip" role="tooltip" hidden></div>
+<script>const N={A13:[428,868],A21:[665,810],A2:[690,1030],A3:[815,1010],A4:[915,1040],A9:[508,908],A10:[688,920],A11:[940,925],A12:[1105,900],A22:[815,828],A23:[968,808],A25:[728,760],A26:[912,765],B13:[607,130],B21:[490,282],B22:[466,385],B23:[498,490],B2:[232,290],B3:[210,380],B4:[155,465],B9:[478,125],B10:[333,305],B11:[328,478],B12:[340,592],B25:[555,325],B26:[560,445],C13:[1188,655],C21:[1120,492],C22:[1148,383],C23:[1118,275],C2:[1430,478],C3:[1412,380],C4:[1355,265],C9:[1270,592],C10:[1280,468],C11:[1272,300],C12:[1122,170],C25:[1058,440],C26:[1058,325],tmp:[805,500],A1:[805,1105],A24:[575,755],A27:[1035,770],A28:[665,688],A29:[815,700],A30:[748,648],A31:[888,655],A18:[1200,945],A19:[243,830],
+B1:[110,385],B24:[625,245],B27:[510,570],B28:[743,265],B29:[643,385],B30:[705,358],B31:[643,465],B18:[255,665],B19:[748,163],
+C1:[1500,390],C24:[1040,548],C27:[1003,265],C28:[1030,622],C29:[972,385],C30:[965,465],C31:[883,365],C18:[1002,168],C19:[1303,740]};
+const TGT={A:"C",C:"B",B:"A"},THR={A:"B",B:"C",C:"A"};
+const REG={A:[[805,1140],[225,850],[520,740],[745,635],[890,645],[1110,745],[1235,935]],
+B:[[70,390],[280,170],[470,75],[760,150],[770,300],[725,370],[660,480],[540,590],[270,690],[90,420]],
+C:[[1530,390],[1320,170],[1130,75],[840,150],[830,300],[875,370],[940,480],[1060,570],[1330,745],[1510,420]]};
+const _LINK={A:"A30↔B31 and A31↔C30",B:"B31↔A30 and B30↔C31",C:"C30↔A31 and C31↔B30"};
+
+const CH=(...a)=>`<div class="chips">${a.map(x=>`<span${x[0]=="["?' class="n"':""}>${x}</span>`).join("")}</div>`;
+const ST=[
+["The map",[
+{t:"Three sides, one Temple in the middle.",mk:[["tmp","Temple"]]},
+{t:"We play side {X}. Switch sides above the map.",hl:["X1"],mk:[["X1","We start here"]],f:["ALL"]},
+{t:"The other two sides are {Y} and {Z}.",hl:["Y1","Z1"],mk:[["Y1","Side {Y}"],["Z1","Side {Z}"]],f:["ALL"]},
+{t:"Garrisons sit closer to one neighbor than the other, so fights naturally rotate this way.",ar:[["A1","C1","atk"],["C1","B1","atk"],["B1","A1","atk"]],v:CH("A → C","C → B","B → A"),f:["ALL"]},
+{t:"Leaders give you one role before the battle. All 3 of your marches follow it.",v:CH("[Attack]","[Defense]","[Floater]"),f:["ALL"]}]],
+["Buildings on our side",[
+{t:"HQ ({X}1): where we start. 1,800 points per minute.",hl:["X1"],mk:[["X1","HQ 1,800/min"]]},
+{t:"Garrison ({X}24): 1,800 points per minute. Opens at 20:00.",hl:["X24"],mk:[["X24","Garrison 1,800/min"]]},
+{t:"Clusters of Ruins: 600 points per minute each.",hl:["@CL"],mk:[["X29","Cluster 600/min"]],f:["ALL"]},
+{t:"Ruins: 180 points per minute each.",hl:["@RU"],f:["ALL"]},
+{t:"Transit Hubs: 60 points per minute each. They are the gates between sides.",hl:["@HUB"],f:["ALL"]},
+{t:"The captain of a building recovers energy faster. Leaders appoint captains.",hl:["@CAP"],f:["ALL"]}]],
+["Transit hubs: the gates",[
+{t:"Each side has 6 hubs. They are the only way into another side.",hl:["@HUB"],f:["ALL"]},
+{t:"{X}18, {X}27 and {X}31 lead to side {Y}.",hl:["X18","X27","X31"],ar:[["X18","Y19","bi"],["X27","Y28","bi"],["X31","Y30","bi"]]},
+{t:"{X}19, {X}28 and {X}30 lead to side {Z}.",hl:["X19","X28","X30"],ar:[["X19","Z18","bi"],["X28","Z27","bi"],["X30","Z31","bi"]]},
+{t:"{X}30 and {X}31 also lead to the Temple.",hl:["X30","X31"],ar:[["X30","tmp","mv"],["X31","tmp","mv"]]},
+{t:"{X}28 is behind our Garrison, so it is locked at first.",hl:["X28","X24"],mk:[["X28","Locked until 20:00"]]}]],
+["Garrisons: locked at first",[
+{t:"Garrisons and the hub behind them are blocked until 20:00.",hl:["X24","X28"],mk:[["X24","Locked until 20:00"]]},
+{t:"Until then, sides meet at 4 hubs: {X}18, {X}19, {X}30 and {X}31.",hl:["X18","X19","X30","X31"],ar:[["X18","Y19","bi"],["X19","Z18","bi"],["X30","Z31","bi"],["X31","Y30","bi"]],f:["ALL"]},
+{t:"Your job: early fights are at those 4 hubs.",hl:["X18","X19","X30","X31"],f:["ALL"]}]],
+["Our rotation",[
+{t:"Every link works both ways. We can attack and be attacked from both sides.",ar:[["X18","Y19","bi"],["X27","Y28","bi"],["X19","Z18","bi"],["X28","Z27","bi"],["X30","Z31","bi"],["X31","Y30","bi"]],f:["ALL"]},
+{t:"{Y}24 is the closest enemy Garrison to us, so we go there first.",hl:["Y24"],ar:[["X27","Y28","atk"],["Y28","Y24","atk"]],mk:[["Y24","Closest enemy Garrison"]]},
+{t:"Side {Z} is closest to our Garrison {X}24, so expect them there. Defend it.",rg:[["X24","D"]],ar:[["X28","X24","def"]],mk:[["X24","Our Garrison","D"]],f:["X24","X28","Z27"]},
+{t:"Every side has the same layout, so fights rotate: A → C → B → A.",hl:["A24","B24","C24"],ar:[["A27","C28","atk"],["C28","C24","atk"],["C27","B28","atk"],["B28","B24","atk"],["B27","A28","atk"],["A28","A24","atk"]],mk:[["C28","A hits C","A"],["B28","C hits B","A"],["A28","B hits A","A"]],v:CH("A → C","C → B","B → A"),f:["ALL"]},
+{t:"Your job:\n[Attack]: push toward {Y}.\n[Defense]: hold {X}24.",ar:[["X27","Y28","atk"],["Y28","Y24","atk"]],rg:[["X24","D"],["Y24","A"]]}]],
+["The Temple",[
+{t:"The Temple opens at 40:00.",hl:["tmp"],mk:[["tmp","Opens at 40:00"]]},
+{t:"It gives 1,800 points per minute and holds a captain.",hl:["tmp"],mk:[["tmp","1,800/min"]]},
+{t:"The occupier at the end gains abundant points.",hl:["tmp"],mk:[["tmp","Hold it at the end"]]},
+{t:"We reach it only through {X}30 and {X}31.",hl:["X30","X31"],ar:[["X30","tmp","mv"],["X31","tmp","mv"]]},
+{t:"Whoever kills the last NPC guard holds the Temple until someone defeats them.",hl:["tmp"],mk:[["tmp","Last NPC: first holder"]]}]],
+["Energy",[
+{t:"Moving, capturing, attacking, retreating, healing and reviving cost energy.",v:CH("Move","Capture","Attack","Retreat","Heal","Revive"),f:["ALL"]},
+{t:"Try to spend it on goals, not random fights.",f:["ALL"]},
+{t:"Wounded? Use Conscript to heal. It costs energy. Use it in a building nobody is fighting for.\nMarch fully defeated? Wait for the cooldown, or spend energy to bring it back instantly.",hl:["@CAP","@HUB"],f:["ALL"]},
+{t:"The captain of a building recovers energy faster.",hl:["@CAP"],f:["ALL"]},
+{t:"Suggestion: keep 30–40% energy for the 20:00 mark.",hl:["X24"],mk:[["X24","20:00"]],f:["ALL"]},
+{t:"Your job: manage your own energy.",f:["ALL"]}]],
+["Your marches",[
+{t:"You have 3 marches, 3 heroes each. Strongest heroes in March 1, then March 2, then March 3.\nTroops: 50/20/30, or 60/20/20 to hold a Garrison.",v:CH("March 1: strongest","March 2: next","March 3: the rest"),f:["ALL"]},
+{t:"Buffs: combat buffs work. Capacity, march speed and rally buffs don’t.",f:["ALL"]},
+{t:"Skip Diana and Blue heroes.\nSet your presets before the battle starts.",f:["ALL"]}]],
+["Battle: Preparation (0–3 min)",[
+{t:"0–3 min. Check your role and your route.",hl:["X1"],f:["REG"]},
+{t:"Check that your 3 presets are ready.",hl:["X1"],f:["REG"]},
+{t:"Use pet buffs and consumables right before the start.",hl:["X1"],f:["REG"]},
+{t:"Your job: be ready when the clock hits 3:00.",hl:["X1"],f:["REG"]}]],
+["Battle: Seize & Conquer (3–20 min)",[
+{t:"3–20 min. Take our neutral buildings fast, marches together.",reg:1},
+{t:"[Attack]: capture enemy buildings through the contact hubs, toward {Y} first.\n[Defense]: hold {X}18, {X}19, {X}30 and {X}31.\n[Floater]: reinforce where it’s needed.",rg:[["X18","D"],["X19","D"],["X30","D"],["X31","D"]],ar:[["X18","Y19","atk"],["X31","Y30","atk"]],mk:[["Y19","Attack route","A"],["Y30","Attack route","A"]],f:["ALL"]},
+{t:"Garrisons are locked. Save energy for 20:00.",hl:["X24"],mk:[["X24","Locked"]]}]],
+["Battle: Garrison Occupation (20–40 min)",[
+{t:"20:00. Garrisons just opened!",hl:["X24","X28"],mk:[["X24","Just opened!"]]},
+{t:"Hold {X}24 first. It gives 1,800 points per minute.",hl:["X24"],mk:[["X24","1,800/min"]]},
+{t:"[Attack]: push to {Y}24 only when the team moves together.\n[Defense]: if the fight is at {X}28, wait at {X}24.",ar:[["X27","Y28","atk"],["Y28","Y24","atk"],["X28","Z27","bi"]],rg:[["Y24","A"],["X24","D"]],mk:[["X24","Wait here","D"]]},
+{t:"Temple team: save energy for the Temple.",hl:["tmp"],f:["ALL"]}]],
+["Battle: Before the Temple (36–40 min)",[
+{t:"About 36–40 min. Heal your troops.",hl:["X1"],f:["ALL"]},
+{t:"Only a Temple team goes to the Temple. Everyone else keeps their role.",v:CH("Temple team","Everyone else: role"),f:["ALL"]},
+{t:"Temple team: move to your position when leaders call it.",hl:["X30","X31"]},
+{t:"[Defense]: protect {X}29. It feeds both Temple hubs.\n[Attack]: cut their access by hitting {Y}29 and {Z}29.",rg:[["X29","D"],["Y29","A"],["Z29","A"]],mk:[["X29","Defend","D"],["Y29","Cut access","A"],["Z29","Cut access","A"]],f:["ALL"]},
+{t:"Don’t start new fights.",f:["ALL"]}]],
+["Battle: Temple Onslaught (40–60 min)",[
+{t:"40:00. The Temple just opened!",hl:["tmp"],mk:[["tmp","Opened!"]]},
+{t:"Temple team: push through {X}30 and {X}31, strongest march first.",ar:[["X30","tmp","atk"],["X31","tmp","atk"]]},
+{t:"Whoever kills the last NPC guard holds the Temple until someone defeats them.",hl:["tmp"],mk:[["tmp","Last NPC: first holder"]]},
+{t:"Everyone else keeps their role:\n[Defense]: protect our Garrison and routes.\n[Floater]: reinforce where it’s needed.",rg:[["X24","D"],["X29","D"]],f:["ALL"]}]],
+["Battle: The ending",[
+{t:"The last minutes decide who holds the Temple.",hl:["tmp"]},
+{t:"Expect pushes from every side.",ar:[["Y30","tmp","foe"],["Y31","tmp","foe"],["Z30","tmp","foe"],["Z31","tmp","foe"]],f:["tmp","X29","Y30","Z31"]},
+{t:"Keep some energy for the final fights.",f:["ALL"]},
+{t:"Stay until the match is complete.",v:CH("Don’t leave early"),f:["ALL"]},
+{t:"Rewards are given at the end. Leave early and you miss them.",f:["ALL"]}]]];
+const F=[];ST.forEach((st,si)=>st[1].forEach((s,k)=>F.push({...s,si,k,n:st[1].length})));
+let i=0,X="A";const $=id=>document.getElementById(id),svg=$("m"),ov=$("ov"),ASP=1600/1168,FULL=[0,0,1600,1168];
+const sub=t=>t.replace(/\{([XYZ])\}/g,(_,l)=>L()[l]);
+const L=()=>({X,Y:TGT[X],Z:THR[X]});
+const key=k=>k=="tmp"?k:(L()[k[0]]||k[0])+k.slice(1);
+const pt=k=>N[key(k)];
+function fit(keys){if(keys[0]=="ALL")return FULL;let ps=keys[0]=="REG"?REG[X]:keys.map(pt);
+let x0=Math.min(...ps.map(p=>p[0])),x1=Math.max(...ps.map(p=>p[0])),y0=Math.min(...ps.map(p=>p[1])),y1=Math.max(...ps.map(p=>p[1])),pd=150;
+let w=Math.max(x1-x0+2*pd,700),h=w/ASP;if(y1-y0+2*pd>h){h=y1-y0+2*pd;w=h*ASP}
+if(w>1600){return FULL}
+let x=(x0+x1)/2-w/2,y=(y0+y1)/2-h/2;x=Math.min(Math.max(x,0),1600-w);y=Math.min(Math.max(y,0),1168-h);return[x,y,w,h]}
+let cur=FULL.slice(),raf;
+function go(t){cancelAnimationFrame(raf);const a=cur.slice(),st=performance.now(),rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const tick=n=>{let k=rm?1:Math.min((n-st)/450,1);k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;cur=a.map((v,j)=>v+(t[j]-v)*k);svg.setAttribute("viewBox",cur.join(" "));if(k<1)raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick)}
+function arrow(a,b,t,u){const p=pt(a),q=pt(b),d=[q[0]-p[0],q[1]-p[1]],l=Math.hypot(...d),n=[d[0]/l,d[1]/l],s=[p[0]+n[0]*17*u,p[1]+n[1]*17*u],e=[q[0]-n[0]*18*u,q[1]-n[1]*18*u];
+const H=(e,n)=>`<polyline points="${[e[0]-n[1]*7*u-n[0]*13*u,e[1]+n[0]*7*u-n[1]*13*u]} ${e} ${[e[0]+n[1]*7*u-n[0]*13*u,e[1]-n[0]*7*u-n[1]*13*u]}"/>`;
+return `<g class="ar a-${t}" stroke-width="${4*u}"><line x1="${s[0]}" y1="${s[1]}" x2="${e[0]}" y2="${e[1]}"/>${H(e,n)}${t=="bi"?H(s,[-n[0],-n[1]]):""}</g>`}
+const RD={Attack:"Captures enemy buildings and pushes Garrisons and the Temple. Leaders set your role before the battle.",Defense:"Protects our buildings and routes. Leaders set your role before the battle.",Floater:"Reinforces wherever needed. Leaders set your role before the battle."};
+const RF=x=>x.replace(/\[(Attack|Defense|Floater)\]/g,(_,r)=>`<button type="button" class="role r${r[0]}" data-r="${r}" >${r}</button>`);
+const RC={A:"#c2410c",D:"#1d4ed8",F:"#7e22ce"};
+const tip=$("tip"),HOV=matchMedia("(hover:hover) and (pointer:fine)").matches;let tb=null;
+function hideTip(){tip.hidden=true;tb=null}
+function showTip(b){tb=b;tip.textContent=RD[b.dataset.r];tip.hidden=false;const r=b.getBoundingClientRect(),w=tip.offsetWidth,hh=tip.offsetHeight,cx=r.left+r.width/2,x=Math.min(Math.max(cx-w/2,8),innerWidth-w-8),up=r.top>hh+16;tip.style.left=x+"px";tip.style.top=(up?r.top-hh-10:r.bottom+10)+"px";tip.style.setProperty("--ax",(cx-x)+"px");tip.className="tip "+(up?"up":"dn")}
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".role");if(b){if(HOV&&e.detail>0)return;if(tb===b)hideTip();else showTip(b)}else hideTip()});
+if(HOV){document.addEventListener("mouseover",e=>{const b=e.target.closest&&e.target.closest(".role");if(b)showTip(b)});document.addEventListener("mouseout",e=>{if(e.target.closest&&e.target.closest(".role"))hideTip()})}
+document.addEventListener("focusout",hideTip);addEventListener("scroll",hideTip,true);addEventListener("keydown",e=>{if(e.key=="Escape")hideTip()});
+
+const CLN={A:[13,21,22,23,29],B:[13,21,22,23,29],C:[13,21,22,23,29]},RUN={A:[2,3,4,9,10,11,12,25,26],B:[2,3,4,9,10,11,12,25,26],C:[2,3,4,9,10,11,12,25,26]};
+const ex=a=>a.flatMap(k=>k=="@CL"?CLN[X].map(n=>"X"+n):k=="@RU"?RUN[X].map(n=>"X"+n):k=="@HUB"?[18,19,27,28,30,31].map(n=>"X"+n):k=="@CAP"?["X1","X24",...CLN[X].map(n=>"X"+n),...RUN[X].map(n=>"X"+n)]:[k]);
+function draw(){const s=F[i],c=L();let f=s.f;if(!f){f=s.reg?["REG"]:[...ex(s.hl||[]),...(s.rg||[]).map(a=>a[0]),...(s.ar||[]).flatMap(a=>[a[0],a[1]])];if(!f.length)f=["ALL"]}
+const t=fit(f),u=t[2]/Math.max(svg.clientWidth,300);let o="";
+if(s.reg)o+=`<polygon class="reg" points="${REG[X].join(" ")}" stroke-width="${3*u}" stroke-dasharray="${10*u} ${6*u}"/>`;
+(s.ar||[]).forEach(a=>o+=arrow(a[0],a[1],a[2],u));
+ex(s.hl||[]).forEach(k=>{const p=pt(k);o+=`<circle class="ring" cx="${p[0]}" cy="${p[1]}" r="${(k=="tmp"?26:16)*u}" stroke-width="${3.5*u}"/>`});
+(s.rg||[]).forEach(([k,r])=>{const p=pt(k);o+=`<circle class="ring" style="stroke:${RC[r]}" cx="${p[0]}" cy="${p[1]}" r="${16*u}" stroke-width="${4*u}"/>`});
+(s.mk||[]).forEach(([k,tx,r])=>{tx=sub(tx);const p=pt(k),w=tx.length*6.4*u+18*u,x=Math.min(Math.max(p[0],t[0]+w/2+4*u),t[0]+t[2]-w/2-4*u);let y=p[1]-32*u;if(y<t[1]+16*u)y=p[1]+34*u;
+o+=`<rect class="mk" x="${x-w/2}" y="${y-11*u}" width="${w}" height="${22*u}" rx="${11*u}" stroke-width="${2*u}"${r?` style="stroke:${RC[r]}"`:""}/><text class="mt" x="${x}" y="${y}" font-size="${12*u}">${tx}</text>`});
+ov.innerHTML=o;go(t);
+$("sn").textContent=`${s.si+1}. ${ST[s.si][0]}`;$("sc").textContent=`${s.si+1}.${s.k+1} of ${s.si+1}.${s.n}`;
+$("seg").innerHTML=Array.from({length:s.n},(_,j)=>`<i class="${j<=s.k?"on":""}"></i>`).join("");
+$("v").innerHTML=RF(s.v||"");const tx=$("tx");tx.innerHTML=sub(s.t).split("\n").map(l=>`<div>${RF(l)}</div>`).join("");tx.className="tx"+(s.t.startsWith("Your job")?" job":"");hideTip();
+$("jump").value=s.si;$("prev").disabled=i==0;$("next").disabled=i==F.length-1}
+$("jump").innerHTML=ST.map((s,j)=>`<option value="${j}">${j+1} · ${s[0]}</option>`).join("");
+$("jump").onchange=e=>{i=F.findIndex(s=>s.si==+e.target.value);draw()};
+$("next").onclick=()=>{if(i<F.length-1){i++;draw()}};$("prev").onclick=()=>{if(i>0){i--;draw()}};
+document.querySelectorAll(".side button").forEach(b=>b.onclick=()=>{X=b.dataset.s;document.querySelectorAll(".side button").forEach(c=>c.setAttribute("aria-pressed",c==b));draw()});
+addEventListener("keydown",e=>{if(e.target.tagName=="SELECT")return;if(e.key=="ArrowRight")$("next").click();if(e.key=="ArrowLeft")$("prev").click()});
+addEventListener("resize",()=>{draw()});
+draw();
+</script>
+</body>
+</html>
