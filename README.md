@@ -6,6 +6,8 @@ Interactive step-by-step guide for the Kingshot Tri-Alliance Clash event. Single
 - `index.html`: the guide (all code inline)
 - `map.webp`: battlefield map
 
+The guide includes English, Turkish, Brazilian Portuguese, Thai, and Korean. Use the language selector above the map to switch languages.
+
 ## Run locally
 Open `index.html` in a browser, or run `python3 -m http.server` in this folder.
 
