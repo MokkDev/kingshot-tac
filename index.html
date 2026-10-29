@@ -218,8 +218,8 @@ const COPY=[
 ["Respawn","Yeniden doğma","Ressurgimento","เกิดใหม่","부활"],
 ["Push","İlerleyin","Avance","บุก","진격"],
 ["Don’t be late","Geç kalmayın","Não se atrase","อย่ามาสาย","늦지 마세요"],
-["Defense squad","Savunma birliği","Esquadrão de defesa","ทีมป้องกัน","방어 부대"],
-["Attack squad","Saldırı birliği","Esquadrão de ataque","ทีมโจมตี","공격 부대"],
+["Defense squad","Defense birliği","Esquadrão Defense","ทีม Defense","Defense 부대"],
+["Attack squad","Attack birliği","Esquadrão Attack","ทีม Attack","Attack 부대"],
 ["Everyone else: role","Diğerleri: rol","Todos os outros: função","คนอื่น: บทบาท","나머지: 역할"],
 ["Temple squad","Tapınak birliği","Esquadrão do Templo","ทีมวิหาร","사원 부대"],
 ["Defend","Savun","Defenda","ป้องกัน","방어"],
@@ -364,7 +364,7 @@ const key=k=>k=="tmp"?k:(L()[k[0]]||k[0])+k.slice(1),pt=k=>N[key(k)];
 const CLN={A:[13,21,22,23,29],B:[13,21,22,23,29],C:[13,21,22,23,29]},RUN={A:[2,3,4,9,10,11,12,25,26],B:[2,3,4,9,10,11,12,25,26],C:[2,3,4,9,10,11,12,25,26]};
 const ex=a=>a.flatMap(k=>k=="@CL"?CLN[X].map(n=>"X"+n):k=="@RU"?RUN[X].map(n=>"X"+n):k=="@HUB"?[18,19,27,28,30,31].map(n=>"X"+n):k=="@CAP"?["X1","X24",...CLN[X].map(n=>"X"+n),...RUN[X].map(n=>"X"+n)]:[k]);
 const RD={Attack:"Captures enemy buildings and pushes Garrisons and the Temple. Leaders set your role before the battle.",Defense:"Protects our buildings and routes. Leaders set your role before the battle.",Floater:"Reinforces wherever needed. Leaders set your role before the battle.",Leader:"R5 & R4 - Assigns energy (captains), tags squads and calls plan changes"},RC={A:"#c2410c",D:"#1d4ed8",F:"#7e22ce",L:"#0f766e"};
-const RF=x=>x.replace(/\[(Attack|Defense|Floater|Leader)\]/g,(_,r)=>`<button type="button" class="role r${r[0]}" data-r="${r}">${tr(r)}</button>`);
+const RF=x=>x.replace(/\[(Attack|Defense|Floater|Leader)\]/g,(_,r)=>`<button type="button" class="role r${r[0]}" data-r="${r}">${r}</button>`);
 const NF=x=>x.replace(/\b([ABC])(\d{1,2})\b/g,m=>N[m]?`<button type="button" class="node" data-k="${m}">${m}</button>`:m);
 const maxW=()=>Math.max(IW,IH*ASP);
 function clampVB(v){let w=Math.min(Math.max(v[2],260),maxW()),h=w/ASP,x=w>=IW?(IW-w)/2:Math.min(Math.max(v[0],0),IW-w),y=h>=IH?(IH-h)/2:Math.min(Math.max(v[1],0),IH-h);return[x,y,w,h]}
@@ -397,7 +397,7 @@ function draw(){const s=F[i];let f=s.f;if(!f){f=s.reg?["REG"]:[...ex(s.hl||[]),.
 tgt=fit(f);render(tgt);go(tgt);hideTip();
 $("sn").textContent=`${s.si+1}. ${tr(ST[s.si][0])}`;$("sc").textContent=`${s.si+1}.${s.k+1} / ${s.si+1}.${s.n}`;
 $("seg").innerHTML=Array.from({length:s.n},(_,j)=>`<i class="${j<=s.k?"on":""}"></i>`).join("");
-$("v").innerHTML=localizedMarkup(RF(s.v||""));const tx=$("tx");tx.innerHTML=sub(tr(s.t)).split("\n").map(l=>`<div>${NF(RF(l))}</div>`).join("");tx.className="tx"+(s.t.startsWith("Your job")?" job":"");
+$("v").innerHTML=RF(localizedMarkup(s.v||""));const tx=$("tx");tx.innerHTML=sub(tr(s.t)).split("\n").map(l=>`<div>${NF(RF(l))}</div>`).join("");tx.className="tx"+(s.t.startsWith("Your job")?" job":"");
 if(dir&&!RM)[$("v"),tx].forEach(e=>e.animate([{opacity:0,transform:`translateX(${dir*22}px)`},{opacity:1,transform:"none"}],{duration:200,easing:"ease-out"}));
 $("sheet").scrollTop=0;$("jump").value=s.si;$("prev").disabled=i==0;$("next").disabled=i==F.length-1;$("hint").hidden=i>0||dir!=0}
 function nav(d){const j=i+d;if(j<0||j>=F.length)return;dir=d;i=j;draw()}
