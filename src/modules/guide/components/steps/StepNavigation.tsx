@@ -27,9 +27,10 @@ export function StepNavigation({
         onClick={onChooseTopics}
       >
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="m15 18-6-6 6-6" />
+          <path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-7h6v7" />
         </svg>
       </button>
+      <span className="bar-divider" aria-hidden="true" />
       <button
         id="prev"
         type="button"

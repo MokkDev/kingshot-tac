@@ -108,6 +108,10 @@ body {
     align-items: center;
     padding: 6px 10px;
   }
+  .top:not(.landing-settings) {
+    border-bottom: 1px solid var(--line);
+    background: var(--card);
+  }
   .language-control,
   .side-control {
     display: contents;
@@ -380,10 +384,13 @@ body {
   }
   .sheet {
     flex: none;
+    box-sizing: border-box;
     height: clamp(150px, 27%, 236px);
     background: var(--card);
+    border: 1px solid var(--line);
+    border-bottom: 0;
     border-radius: 18px 18px 0 0;
-    box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.12);
     padding: 8px 14px 4px;
     overflow: auto;
     overflow-x: hidden;
@@ -616,20 +623,33 @@ body {
   }
   .sh {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 8px;
   }
-  .sh .progress {
+  .step-heading {
+    flex: 1;
+    min-width: 0;
+  }
+  .topic-eyebrow {
+    display: block;
+    overflow: hidden;
+    color: var(--muted);
+    font:
+      700 10px/1.2 system-ui,
+      sans-serif;
+    letter-spacing: 0.08em;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .progress {
     flex: none;
-    margin-left: auto;
     color: var(--muted);
     font-size: 13px;
+    font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
   .step-title {
-    flex: 1;
-    min-width: 0;
     margin: 0;
     overflow-wrap: anywhere;
     font:
@@ -726,18 +746,29 @@ body {
     display: flex;
     gap: 10px;
     padding: 6px 12px max(8px, env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
+    border: 1px solid var(--line);
+    border-bottom: 0;
     background: var(--card);
   }
   .bar button {
     height: 48px;
     min-height: 44px;
-    border-radius: 14px;
-    border: 1px solid var(--btn);
+    border-radius: 15px;
+    border: 1px solid var(--line);
     font-size: 17px;
+  }
+  .bar-divider {
+    flex: none;
+    align-self: center;
+    width: 1px;
+    height: 32px;
+    border-radius: 1px;
+    background: var(--line);
   }
   #prev {
     flex: 1;
-    background: transparent;
+    background: var(--bg);
     color: var(--text);
   }
   #home {
@@ -746,7 +777,7 @@ body {
     place-items: center;
     width: 48px;
     padding: 0;
-    background: transparent;
+    background: var(--bg);
     color: var(--text);
   }
   #home svg {
@@ -874,7 +905,6 @@ body {
     font:
       700 16px/1 system-ui,
       sans-serif;
-    margin-left: 8px;
     flex: none;
   }
   .sh .collapse svg {

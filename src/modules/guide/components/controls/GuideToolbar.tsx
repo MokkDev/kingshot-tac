@@ -112,11 +112,11 @@ export function GuideToolbar({
       {sections.length > 0 && (
         <>
           <label className="sr" htmlFor="guide-section">
-            {translate('Jump to step', locale)}
+            {translate('Jump to section', locale)}
           </label>
           <select
             id="guide-section"
-            aria-label={translate('Jump to step', locale)}
+            aria-label={translate('Jump to section', locale)}
             value={activeSectionIndex}
             onChange={(event) => {
               const sectionIndex = Number(event.currentTarget.value)

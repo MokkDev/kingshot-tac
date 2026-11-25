@@ -10,6 +10,7 @@ import type { GuideRole } from '../content/RoleBadge'
 interface GuideStepSheetProps {
   step: DisplayStep
   stepIndex: number
+  topicTitle: string
   side: Side
   locale: Locale
   collapsed: boolean
@@ -23,6 +24,7 @@ interface GuideStepSheetProps {
 export function GuideStepSheet({
   step,
   stepIndex,
+  topicTitle,
   side,
   locale,
   collapsed,
@@ -34,8 +36,7 @@ export function GuideStepSheet({
 }: GuideStepSheetProps) {
   const swipe = useRef<{ x: number; y: number; at: number } | null>(null)
   const sectionName = translate(step.sectionTitle, locale)
-  const stepName = `${step.topicSectionIndex + 1}. ${sectionName}`
-  const progressName = `${step.topicStepIndex + 1} / ${step.topicStepCount}`
+  const topicSectionProgress = `${step.topicSectionIndex + 1} / ${step.topicSectionCount}`
 
   return (
     <section
@@ -68,10 +69,12 @@ export function GuideStepSheet({
       }}
     >
       <div className="sh">
-        <h2 id="guide-step-title" className="step-title" tabIndex={-1}>
-          {stepName}
-        </h2>
-        <span className="progress">{progressName}</span>
+        <div className="step-heading">
+          <span className="topic-eyebrow">{translate(topicTitle, locale)}</span>
+          <h2 id="guide-step-title" className="step-title" tabIndex={-1}>
+            {sectionName}
+          </h2>
+        </div>
         <button
           type="button"
           className="collapse"
@@ -83,12 +86,28 @@ export function GuideStepSheet({
             <path d="M29.994 10.183 15.363 24.812.733 10.184a2.5 2.5 0 0 1 3.536-3.536l11.094 11.093L26.46 6.647a2.5 2.5 0 0 1 3.535 3.536Z" />
           </svg>
         </button>
+        <span
+          className="progress"
+          aria-label={`${translate('Topic section', locale)} ${topicSectionProgress}`}
+        >
+          {topicSectionProgress}
+        </span>
       </div>
 
-      <div className="seg" aria-hidden="true">
-        {Array.from({ length: step.sectionStepCount }, (_, index) => (
-          <i key={index} className={index <= step.localIndex ? 'on' : ''} />
-        ))}
+      <div className="segrow">
+        <div
+          className="seg"
+          role="progressbar"
+          aria-label={translate('Section step', locale)}
+          aria-valuemin={0}
+          aria-valuemax={step.sectionStepCount}
+          aria-valuenow={step.localIndex + 1}
+          aria-valuetext={`${step.localIndex + 1} / ${step.sectionStepCount}`}
+        >
+          {Array.from({ length: step.sectionStepCount }, (_, index) => (
+            <i key={index} className={index <= step.localIndex ? 'on' : ''} />
+          ))}
+        </div>
       </div>
 
       {step.chips && (

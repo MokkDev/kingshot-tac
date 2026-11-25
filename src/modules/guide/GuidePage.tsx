@@ -4,6 +4,7 @@ import { BattleMap } from './components/map/BattleMap'
 import { GuideStepSheet } from './components/steps/GuideStepSheet'
 import { StepNavigation } from './components/steps/StepNavigation'
 import { GuideTopicPicker } from './components/steps/GuideTopicPicker'
+import { getGuideTopic } from './data/guide-data'
 import { useGuideController } from './hooks/use-guide-controller'
 import { useMapViewport } from './hooks/use-map-viewport'
 import type { GuideStep } from './types/guide'
@@ -86,6 +87,7 @@ export function GuidePage() {
       <GuideStepSheet
         step={guide.step}
         stepIndex={guide.stepIndex}
+        topicTitle={getGuideTopic(guide.topicId).title}
         side={guide.side}
         locale={guide.locale}
         collapsed={collapsed}

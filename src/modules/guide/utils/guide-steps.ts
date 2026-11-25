@@ -7,6 +7,7 @@ export interface DisplayStep extends GuideStep {
   sectionStepCount: number
   sectionTitle: string
   topicSectionIndex: number
+  topicSectionCount: number
   topicStepIndex: number
   topicStepCount: number
 }
@@ -31,6 +32,7 @@ export function buildDisplaySteps(
         sectionStepCount: visibleSteps.length,
         sectionTitle,
         topicSectionIndex,
+        topicSectionCount: topic.sectionIndexes.length,
       }))
     },
   )
