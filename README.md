@@ -25,8 +25,9 @@ The app is configured for the project site at
 `https://mokkdev.github.io/kingshot-tac/`. Static prerendering creates the HTML
 entry point, and the GitHub Actions workflow publishes `dist/client` (not the
 server bundle). In the repository's **Settings → Pages**, set the source to
-**GitHub Actions**. Pushes to `main` deploy automatically; the workflow can also
-be run manually from the Actions tab.
+**GitHub Actions**. The workflow currently deploys automatically from `react`;
+change its branch trigger to `main` when the work is ready to publish from the
+default branch.
 
 If you use a custom domain or a user/organization site instead, change the Vite
 `base` in `vite.config.ts` to `/`. The router base path follows that setting.
