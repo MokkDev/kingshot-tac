@@ -9,9 +9,10 @@ import type { Locale } from '../../utils/localization'
 import type { Side } from '../../types/guide'
 
 interface GuideToolbarProps {
+  layout?: 'guide' | 'landing'
   locale: Locale
   side: Side
-  sections: Array<{ index: number; title: string }>
+  sections: Array<{ index: number; title: string; displayIndex: number }>
   activeSectionIndex: number
   onLocaleChange: (locale: Locale) => void
   onSideChange: (side: Side) => void
@@ -19,6 +20,7 @@ interface GuideToolbarProps {
 }
 
 export function GuideToolbar({
+  layout = 'guide',
   locale,
   side,
   sections,
@@ -27,6 +29,7 @@ export function GuideToolbar({
   onSideChange,
   onSectionChange,
 }: GuideToolbarProps) {
+  const isLanding = layout === 'landing'
   const localeDetails = useRef<HTMLDetailsElement>(null)
   const [localeOpen, setLocaleOpen] = useState(false)
 
@@ -59,76 +62,96 @@ export function GuideToolbar({
   }, [])
 
   return (
-    <header className="top">
-      <details
-        ref={localeDetails}
-        className="locale"
-        onToggle={(event) => setLocaleOpen(event.currentTarget.open)}
-      >
-        <summary
-          aria-label={`${translate('Language', locale)}: ${LOCALE_LABELS[locale]}`}
-          aria-expanded={localeOpen}
+    <header className={`top${isLanding ? ' landing-settings' : ''}`}>
+      <div className="language-control">
+        {isLanding && (
+          <span className="setting-label">{translate('Language', locale)}</span>
+        )}
+        <details
+          ref={localeDetails}
+          className="locale"
+          onToggle={(event) => setLocaleOpen(event.currentTarget.open)}
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
-          </svg>
-          <span className="locale-code">{LOCALE_CODES[locale]}</span>
-        </summary>
-        <div className="locale-menu" aria-label={translate('Language', locale)}>
-          {LOCALES.map((option) => (
+          <summary
+            aria-label={`${translate('Language', locale)}: ${LOCALE_LABELS[locale]}`}
+            aria-expanded={localeOpen}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
+            </svg>
+            {isLanding && (
+              <span className="locale-name">{LOCALE_LABELS[locale]}</span>
+            )}
+            <span className="locale-code">{LOCALE_CODES[locale]}</span>
+          </summary>
+          <div
+            className="locale-menu"
+            aria-label={translate('Language', locale)}
+          >
+            {LOCALES.map((option) => (
+              <button
+                key={option}
+                type="button"
+                aria-pressed={option === locale}
+                onClick={() => {
+                  onLocaleChange(option)
+                  if (localeDetails.current) {
+                    localeDetails.current.open = false
+                    localeDetails.current.querySelector('summary')?.focus()
+                  }
+                }}
+              >
+                {LOCALE_LABELS[option]}
+              </button>
+            ))}
+          </div>
+        </details>
+      </div>
+
+      {sections.length > 0 && (
+        <>
+          <label className="sr" htmlFor="guide-section">
+            {translate('Jump to step', locale)}
+          </label>
+          <select
+            id="guide-section"
+            aria-label={translate('Jump to step', locale)}
+            value={activeSectionIndex}
+            onChange={(event) => {
+              const sectionIndex = Number(event.currentTarget.value)
+              onSectionChange(sectionIndex)
+            }}
+          >
+            {sections.map(({ index, title, displayIndex }) => (
+              <option key={index} value={index}>
+                {displayIndex} · {translate(title, locale)}
+              </option>
+            ))}
+          </select>
+        </>
+      )}
+
+      <div className="side-control">
+        {isLanding && (
+          <span className="setting-label">{translate('Map side', locale)}</span>
+        )}
+        <div
+          className="side"
+          role="group"
+          aria-label={translate('Our side', locale)}
+        >
+          {(['A', 'B', 'C'] as const).map((option) => (
             <button
               key={option}
               type="button"
-              aria-pressed={option === locale}
-              onClick={() => {
-                onLocaleChange(option)
-                if (localeDetails.current) {
-                  localeDetails.current.open = false
-                  localeDetails.current.querySelector('summary')?.focus()
-                }
-              }}
+              aria-pressed={option === side}
+              onClick={() => onSideChange(option)}
             >
-              {LOCALE_LABELS[option]}
+              {option}
             </button>
           ))}
         </div>
-      </details>
-
-      <label className="sr" htmlFor="guide-section">
-        {translate('Jump to step', locale)}
-      </label>
-      <select
-        id="guide-section"
-        aria-label={translate('Jump to step', locale)}
-        value={activeSectionIndex}
-        onChange={(event) => {
-          const sectionIndex = Number(event.currentTarget.value)
-          onSectionChange(sectionIndex)
-        }}
-      >
-        {sections.map(({ index, title }) => (
-          <option key={index} value={index}>
-            {index + 1} · {translate(title, locale)}
-          </option>
-        ))}
-      </select>
-
-      <div
-        className="side"
-        role="group"
-        aria-label={translate('Our side', locale)}
-      >
-        {(['A', 'B', 'C'] as const).map((option) => (
-          <button
-            key={option}
-            type="button"
-            aria-pressed={option === side}
-            onClick={() => onSideChange(option)}
-          >
-            {option}
-          </button>
-        ))}
       </div>
     </header>
   )

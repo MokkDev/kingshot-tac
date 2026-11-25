@@ -1,4 +1,12 @@
 export type Side = 'A' | 'B' | 'C'
+export type GuideTopicId = 'event' | 'player' | 'battle'
+
+export interface GuideTopic {
+  id: GuideTopicId
+  title: string
+  description: string
+  sectionIndexes: number[]
+}
 
 export enum SideRole {
   Attack = 'A',

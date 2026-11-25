@@ -34,8 +34,8 @@ export function GuideStepSheet({
 }: GuideStepSheetProps) {
   const swipe = useRef<{ x: number; y: number; at: number } | null>(null)
   const sectionName = translate(step.sectionTitle, locale)
-  const stepName = `${step.sectionIndex + 1}. ${sectionName}`
-  const progressName = `${step.sectionIndex + 1}.${step.localIndex + 1} / ${step.sectionIndex + 1}.${step.sectionStepCount}`
+  const stepName = `${step.topicSectionIndex + 1}. ${sectionName}`
+  const progressName = `${step.topicStepIndex + 1} / ${step.topicStepCount}`
 
   return (
     <section
@@ -44,7 +44,7 @@ export function GuideStepSheet({
       onPointerDown={(event) => {
         if (
           event.target instanceof Element &&
-          event.target.closest('.role, .node')
+          event.target.closest('.role, .node, .collapse')
         )
           return
         swipe.current = { x: event.clientX, y: event.clientY, at: Date.now() }
@@ -68,8 +68,10 @@ export function GuideStepSheet({
       }}
     >
       <div className="sh">
-        <b>{stepName}</b>
-        <span>{progressName}</span>
+        <h2 id="guide-step-title" className="step-title" tabIndex={-1}>
+          {stepName}
+        </h2>
+        <span className="progress">{progressName}</span>
         <button
           type="button"
           className="collapse"

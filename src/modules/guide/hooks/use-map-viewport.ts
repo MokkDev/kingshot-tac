@@ -25,9 +25,14 @@ interface GestureSnapshot {
 interface UseMapViewportOptions {
   step: GuideStep
   side: Side
+  enabled?: boolean
 }
 
-export function useMapViewport({ step, side }: UseMapViewportOptions) {
+export function useMapViewport({
+  step,
+  side,
+  enabled = true,
+}: UseMapViewportOptions) {
   const mapRef = useRef<HTMLDivElement>(null)
   const [aspect, setAspect] = useState(MAP_WIDTH / MAP_HEIGHT)
   const [viewBox, setViewBox] = useState<ViewBox>([0, 0, MAP_WIDTH, MAP_HEIGHT])
@@ -83,6 +88,7 @@ export function useMapViewport({ step, side }: UseMapViewportOptions) {
   )
 
   useEffect(() => {
+    if (!enabled) return
     const element = mapRef.current
     if (!element) return
 
@@ -92,14 +98,19 @@ export function useMapViewport({ step, side }: UseMapViewportOptions) {
     })
     resizeObserver.observe(element)
     return () => resizeObserver.disconnect()
-  }, [])
+  }, [enabled])
 
   useEffect(() => {
+    if (!enabled) {
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current)
+      frameRef.current = null
+      return
+    }
     const nextViewBox = fitViewBox(getStepFocus(step), side, aspect)
     setPeekedNode(null)
     peekViewBoxRef.current = null
     animateTo(nextViewBox)
-  }, [animateTo, aspect, side, step])
+  }, [animateTo, aspect, enabled, side, step])
 
   useEffect(
     () => () => {

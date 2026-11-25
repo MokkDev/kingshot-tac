@@ -1,5 +1,10 @@
 import { ArrowType, SideRole } from '../types/guide'
-import type { GuideSection, GuideStep } from '../types/guide'
+import type {
+  GuideSection,
+  GuideStep,
+  GuideTopic,
+  GuideTopicId,
+} from '../types/guide'
 
 const CH = (...labels: string[]) => labels
 const AY: NonNullable<GuideStep['arrows']> = [
@@ -568,3 +573,30 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     ],
   ],
 ]
+
+export const GUIDE_TOPICS: GuideTopic[] = [
+  {
+    id: 'event',
+    title: 'Event basics',
+    description: 'Map, buildings, hubs, and Temple basics',
+    sectionIndexes: [0, 1, 2, 3, 4],
+  },
+  {
+    id: 'player',
+    title: 'Player essentials',
+    description: 'Energy, marches, and fighting basics',
+    sectionIndexes: [5, 6, 7],
+  },
+  {
+    id: 'battle',
+    title: 'Battle plan',
+    description: 'Roles and priorities through each battle phase',
+    sectionIndexes: [8, 9, 10, 11, 12, 13, 14],
+  },
+]
+
+export function getGuideTopic(topicId: GuideTopicId): GuideTopic {
+  const topic = GUIDE_TOPICS.find(({ id }) => id === topicId)
+  if (!topic) throw new Error(`Missing guide topic metadata: ${topicId}`)
+  return topic
+}
