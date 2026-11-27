@@ -52,8 +52,7 @@ export const GUIDE_SECTIONS: GuideSection[] = [
         mapFocus: ['ALL'],
       },
       {
-        text: 'You get one role, set by [Leader] before the battle. All 3 of your marches follow it.',
-        chips: CH('[Attack]', '[Defense]', '[Floater]', '[Leader]'),
+        text: '[Leader] coordinates the alliance before and during the battle.',
         mapFocus: ['ALL'],
       },
     ],
@@ -244,7 +243,7 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     'Your marches',
     [
       {
-        text: 'You have 3 marches, 3 heroes each. Strongest heroes in March 1, then March 2, then March 3.\nTroops: 50/20/30, or 60/20/20 to hold a Garrison.',
+        text: 'You have 3 marches, 3 heroes each. Strongest heroes in March 1, then March 2, then March 3.\nTroops: 50/20/30, or 60/20/20 to hold a Garrison.\nAll 3 marches follow your role, assigned by [Leader] before battle.',
         chips: CH('March 1: strongest', 'March 2: next', 'March 3: the rest'),
         mapFocus: ['ALL'],
       },
@@ -310,6 +309,7 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     [
       {
         text: '0–3 min. Check your role and your route.',
+        chips: CH('[Attack]', '[Defense]', '[Floater]', '[Leader]'),
         highlights: ['X1'],
         mapFocus: ['REG'],
       },
